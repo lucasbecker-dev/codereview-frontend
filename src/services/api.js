@@ -7,21 +7,8 @@ const api = axios.create({
     headers: {
         'Content-Type': 'application/json',
     },
+    withCredentials: true, // This ensures cookies are sent with requests
 });
-
-// Add a request interceptor for authentication
-api.interceptors.request.use(
-    (config) => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
-    },
-    (error) => {
-        return Promise.reject(error);
-    }
-);
 
 // Add a response interceptor for error handling
 api.interceptors.response.use(
@@ -29,12 +16,30 @@ api.interceptors.response.use(
         return response;
     },
     (error) => {
-        // Handle 401 Unauthorized errors
-        if (error.response && error.response.status === 401) {
-            // Clear local storage and redirect to login
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
-            window.location.href = '/login';
+        // Handle different error status codes
+        if (error.response) {
+            switch (error.response.status) {
+                case 401: // Unauthorized
+                    // Redirect to login page
+                    window.location.href = '/login';
+                    break;
+                case 403: // Forbidden
+                    // Redirect to unauthorized page
+                    window.location.href = '/unauthorized';
+                    break;
+                case 500: // Server error
+                    console.error('Server error:', error);
+                    break;
+                default:
+                    // Handle other errors
+                    console.error('API error:', error);
+            }
+        } else if (error.request) {
+            // The request was made but no response was received
+            console.error('Network error:', error.request);
+        } else {
+            // Something happened in setting up the request
+            console.error('Request error:', error.message);
         }
         return Promise.reject(error);
     }

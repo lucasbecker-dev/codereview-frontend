@@ -11,25 +11,31 @@ export const AuthProvider = ({ children }) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Check if user is already logged in
-        const storedUser = localStorage.getItem('user');
-        const token = localStorage.getItem('token');
+        // Check if user is already logged in by validating session with backend
+        const checkAuthStatus = async () => {
+            try {
+                const response = await api.get('/auth/me');
+                if (response.data) {
+                    setUser(response.data);
+                }
+            } catch (err) {
+                // If the request fails, the user is not authenticated
+                setUser(null);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-        if (storedUser && token) {
-            setUser(JSON.parse(storedUser));
-        }
-
-        setLoading(false);
+        checkAuthStatus();
     }, []);
 
     const login = async (email, password) => {
         try {
             setLoading(true);
-            const response = await api.post('/auth/login', { email, password });
-            const { user, token } = response.data;
-
-            localStorage.setItem('token', token);
-            localStorage.setItem('user', JSON.stringify(user));
+            const response = await api.post('/auth/login', { email, password }, {
+                withCredentials: true // Important for cookies to be sent/received
+            });
+            const { user } = response.data;
 
             setUser(user);
             setError(null);
@@ -55,10 +61,15 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const logout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        setUser(null);
+    const logout = async () => {
+        try {
+            await api.post('/auth/logout', {}, { withCredentials: true });
+            setUser(null);
+        } catch (err) {
+            console.error('Logout error:', err);
+            // Still clear user state even if the API call fails
+            setUser(null);
+        }
     };
 
     const value = {
