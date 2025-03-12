@@ -1,27 +1,24 @@
 # CodeReview Platform - Frontend
 
-This repository contains the frontend application for the CodeReview Platform, a comprehensive system designed to facilitate code reviews for educational institutions, coding bootcamps, and development teams.
+This is the frontend application for the CodeReview Platform, a comprehensive tool designed to facilitate code reviews, feedback, and collaboration.
 
-## Overview
+## Features
 
-The CodeReview Platform frontend is built with React, providing a modern and intuitive user interface that enables:
-
-- User authentication and profile management
+- User authentication and authorization
 - Project submission and management
 - Code viewing with syntax highlighting
-- Inline and general commenting on code
-- Dashboard views for different user roles
+- Inline commenting system
 - Notification system
+- Dashboard for different user roles
 
 ## Tech Stack
 
-- **Framework**: React.js
-- **Routing**: React Router
-- **State Management**: Context API
-- **Styling**: Styled Components
-- **HTTP Client**: Axios
-- **Code Highlighting**: PrismJS
-- **Form Handling**: Formik with Yup validation
+- React with Vite
+- React Router for navigation
+- Styled Components for styling
+- Axios for API requests
+- Formik and Yup for form validation
+- PrismJS for code syntax highlighting
 
 ## Getting Started
 
@@ -32,45 +29,55 @@ The CodeReview Platform frontend is built with React, providing a modern and int
 
 ### Installation
 
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/yourusername/codereview-frontend.git
-   cd codereview-frontend
-   ```
-
+1. Clone the repository
 2. Install dependencies:
 
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
-3. Create a `.env` file in the root directory with the following variables:
+3. Create a `.env` file based on `.env.example` and configure your environment variables.
 
-   ```
-   REACT_APP_API_URL=http://localhost:5000/api
-   ```
+### Development
 
-4. Start the development server:
+To start the development server:
 
-   ```bash
-   npm start
-   ```
+```bash
+npm run dev
+```
 
-The application will be available at `http://localhost:3000`.
+### Building for Production
 
-## Features
+To build the application for production:
 
-- **Responsive Design**: Works on desktop and mobile devices
-- **Role-Based Access**: Different interfaces for students, reviewers, and administrators
-- **Real-Time Notifications**: Stay updated on review activities
-- **Syntax Highlighting**: Support for multiple programming languages
-- **Inline Commenting**: Comment on specific lines of code
+```bash
+npm run build
+```
 
-## Contributing
+## Project Structure
 
-Please read our contributing guidelines before submitting pull requests.
+```
+codereview-frontend/
+├── public/
+├── src/
+│   ├── assets/         # Static assets like images, icons
+│   ├── components/     # Reusable UI components
+│   │   ├── common/     # Common UI elements
+│   │   ├── auth/       # Authentication components
+│   │   ├── layout/     # Layout components
+│   │   └── ...
+│   ├── context/        # React context providers
+│   ├── pages/          # Page components
+│   ├── services/       # API services
+│   ├── utils/          # Utility functions
+│   ├── App.jsx         # Main application component
+│   └── main.jsx        # Entry point
+├── .env                # Environment variables
+├── .gitignore
+├── package.json
+└── README.md
+```
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+[MIT](LICENSE)
