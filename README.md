@@ -36,7 +36,7 @@ yarn install
 ```
 
 3. Set up environment variables
-Create a `.env.local` file in the root directory with the following variables:
+Create a `.env` file in the root directory with the following variables:
 
 ```
 VITE_API_URL=http://localhost:5000/api
@@ -56,7 +56,7 @@ yarn dev
 src/
 ├── components/     # UI components
 ├── hooks/          # Custom React hooks
-├── lib/            # Utility functions
+├── lib/            # Utility functions and constants
 ├── pages/          # Page components
 ├── providers/      # Context providers
 ├── styles/         # Global styles
@@ -65,12 +65,12 @@ src/
 
 ## Features
 
-- Authentication system with JWT
-- Project submission and review
+- User authentication (login, register, password reset)
+- Project submission and management
 - Code viewing with syntax highlighting
 - Inline commenting system
-- User management
 - Notification system
+- Role-based dashboards (student, reviewer, admin)
 
 ## License
 
