@@ -1,0 +1,21 @@
+{
+  "name": "codereview-frontend",
+  "version": "1.0.0",
+  "description": "This repository contains the React frontend for the Code Review Platform, a centralized environment for bootcamp students to submit coding projects and receive feedback from assigned reviewers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasbecker-dev/codereview-frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/lucasbecker-dev/codereview-frontend/issues"
+  },
+  "homepage": "https://github.com/lucasbecker-dev/codereview-frontend#readme"
+}
