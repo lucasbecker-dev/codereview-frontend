@@ -5,6 +5,7 @@ A modern, accessible platform for bootcamp students to submit coding projects an
 ## Technology Stack
 
 - React.js with JavaScript (using JSDoc for type safety)
+- Vite for build tooling
 - Shadcn/UI for ALL components (following v0.dev implementation approach)
 - Radix UI for accessible primitives (used by Shadcn/UI)
 - TailwindCSS for styling
@@ -36,16 +37,16 @@ A modern, accessible platform for bootcamp students to submit coding projects an
 3. Create a `.env` file in the root directory with the following variables:
 
    ```
-   REACT_APP_API_URL=http://localhost:5000/api
+   VITE_API_URL=http://localhost:5000/api
    ```
 
 4. Start the development server:
 
    ```bash
-   npm start
+   npm run dev
    ```
 
-5. The application will be available at `http://localhost:3000`
+5. The application will be available at `http://localhost:5173`
 
 ## Deployment
 
@@ -54,9 +55,9 @@ This project is configured for deployment on Railway. When you push changes to t
 ### Railway Configuration
 
 - Build Command: `npm run build`
-- Start Command: `npx serve -s build`
+- Start Command: `npm run preview`
 - Environment Variables:
-  - `REACT_APP_API_URL`: URL of the backend service
+  - `VITE_API_URL`: URL of the backend service
 
 ## Project Structure
 
